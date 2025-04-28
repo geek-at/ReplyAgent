@@ -1,0 +1,45 @@
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    font-weight: bold
+}
+
+.grid-container div {
+    margin: 1ex;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: rgb(51, 173, 226);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+
+#reply-negatively-button {
+    background-color: #d83b01;
+}
+
+#reply-negatively-button:hover {
+    background-color: #c33400;
+}
+#reply-politely-button{
+    background-color: #01d828;
+}
+
+#reply-politely-button:hover {
+    background-color: #01d828;
+}
