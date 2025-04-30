@@ -2,6 +2,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.buttons {
+    padding: 2px;
+}
+
+.form {
+    width: 100%;
+    padding: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form > input {
+    width: 66%;
+}
+
+.form > button {
+    width: 33%;
 }
 
 .header {
@@ -26,6 +46,10 @@ button {
     color: white;
     border: none;
     border-radius: 4px;
+}
+
+button:disabled {
+    background-color: gray;
 }
 
 

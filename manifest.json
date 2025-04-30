@@ -30,7 +30,7 @@
     "default_icon": "images/internet-32px.png"
   },
   "compose_action": {
-    "default_popup": "composePopup/popup.html",
+    "default_popup": "composePopup/popupV2.html",
     "default_title": "Generate Response",
     "default_icon": "images/internet-32px.png"
   },

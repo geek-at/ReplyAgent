@@ -1,6 +1,6 @@
 const replyCustomButton = document.querySelector("#reply-custom-button");
 const replyPolitelyButton = document.querySelector("#reply-politely-button");
-
+const promptCustomButton = document.querySelector("#custom-prompt-button")
 
 function getPolitePrompt(mailContent, subject) {
     return`
@@ -78,6 +78,12 @@ Niestety, nie mogę wyrazić na to zgody, ponieważ regulamin studiów wyraźnie
 Z wyrazami szacunku,
 [YourName]
 `
+}
+
+function getCustomPrompt(mailContent, subject, instructions) {
+  return `
+    Odpowiedz na wiadomość o temacie ${subject} oraz treści ${mailContent} uwzględniając tylko instrukcje podane tutaj : ${instructions}
+  `
 }
 
 
@@ -239,8 +245,33 @@ async function generateResponse(isPositive) {
   }
 }
 
-async function getSessionInfo() {
+function generateCustomForm() {
+  replyCustomButton.disabled = true;
+  const form = document.querySelector("#custom-prompt-form");
+  
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'Wprowadź konkretne instrukcje...';
+  input.id = 'custom-prompt-input';
+
+  const button = document.createElement('button');
+  button.id = 'custom-prompt-button';
+  button.textContent = 'Wyślij';
+  form.appendChild(input);
+  form.appendChild(button);
+  
+  document.querySelector("#custom-prompt-button").addEventListener('click', removeCustomForm);
+}
+
+function removeCustomForm() {
+  replyCustomButton.disabled = false;
+  const input = document.querySelector('#custom-prompt-input');
+  const button = document .querySelector('#custom-prompt-button');
+
+  if (input) input.remove();
+  if (button) button.remove();
+
 }
 
 replyPolitelyButton.addEventListener(`click`, generateResponse);
-replyCustomButton.addEventListener(`click`, getSessionInfo);
+replyCustomButton.addEventListener(`click`, generateCustomForm);
