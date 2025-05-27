@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "ReplyAI",
-  "description": "A basic Hello World example extension!",
+  "description": "Extension generates AI responses using user's api key",
   "version": "1.0",
-  "author": "Thunderbird Team",
+  "author": "JWM",
   "browser_specific_settings": {
     "gecko": {
       "id": "helloworld@yoursite.com",
@@ -20,23 +20,23 @@
     "identity"
   ],
   "browser_action": {
-    "default_popup": "mainPopup/popup.html",
-    "default_title": "Hello World",
-    "default_icon": "images/internet-32px.png"
+    "default_popup": "mainPopup/main.html",
+    "default_title": "ReplyAI",
+    "default_icon": "images/logo.png"
   },
   "message_display_action": {
-    "default_popup": "messagePopup/popup.html",
-    "default_title": "Reply with AI",
-    "default_icon": "images/internet-32px.png"
+    "default_popup": "messagePopup/message.html",
+    "default_title": "Anti Spam",
+    "default_icon": "images/logo.png"
   },
   "compose_action": {
-    "default_popup": "composePopup/popupV2.html",
+    "default_popup": "composePopup/compose.html",
     "default_title": "Generate Response",
-    "default_icon": "images/internet-32px.png"
+    "default_icon": "images/logo.png"
   },
   "icons": {
-    "64": "images/internet.png",
-    "32": "images/internet-32px.png",
-    "16": "images/internet-16px.png"
+    "64": "images/logo.png",
+    "32": "images/logo.png",
+    "16": "images/logo.png"
   }
 }
