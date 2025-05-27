@@ -1,6 +1,7 @@
 const replyCustomButton = document.querySelector("#reply-custom-button");
+const promptCustomButton = document.querySelector("#custom-prompt-button");
 const replyPolitelyButton = document.querySelector("#reply-politely-button");
-const promptCustomButton = document.querySelector("#custom-prompt-button")
+const replyNegativelyButton = document.querySelector("#reply-negatively-button");
 
 function getPolitePrompt(mailContent, subject) {
     return`
@@ -87,17 +88,6 @@ function getCustomPrompt(mailContent, subject, instructions) {
 }
 
 
-document.getElementById("reply-politely-button").addEventListener("click", async () => {
-  await generateResponse(true); // Pozytywna odpowiedź
-});
-
-document.getElementById("reply-negatively-button").addEventListener("click", async () => {
-  await generateResponse(false); // Negatywna odpowiedź
-});
-
-
-
-
 async function getCurrentSenderIdentity() {
     const [tab] = await messenger.tabs.query({ active: true, currentWindow: true });
   
@@ -161,47 +151,12 @@ function formatGeminiReplyForHTML(text) {
   
     return text;
   }
-  
-/*
-async function sendMailGenerateRequest(event) {
-    const [tab] = await messenger.tabs.query({ active: true, currentWindow: true });
-    let composeDetails = await messenger.compose.getComposeDetails(tab.id);
-    const messageId = composeDetails.relatedMessageId;
-    
-    const mail = await getMailDetails(messageId);
-    const subject = composeDetails.subject;
-    
-    const keyObj = await browser.storage.local.get("key");
-    const key = keyObj.key;
-    const user = await getCurrentSenderIdentity();
-
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            contents: [{
-                "parts": [{"text": getPolitePrompt(mail, subject)}]
-            }]
-        })
-    });
-    
-    const data = await response.json();
-    let generatedText = formatGeminiReplyForHTML(data.candidates[0].content.parts[0].text);
-    if(user.fullName != undefined) {
-        generatedText = generatedText.replace('[YourName]', user.fullName);
-    }
-    
-    await messenger.compose.setComposeDetails(tab.id, {
-        body: generatedText
-    });
-}*/
 
 
 
-async function generateResponse(isPositive) {
+async function generateResponse(type, instructions = "") {
   try {
+      console.log(type);
       const [tab] = await messenger.tabs.query({ active: true, currentWindow: true });
       const composeDetails = await messenger.compose.getComposeDetails(tab.id);
       const messageId = composeDetails.relatedMessageId;
@@ -210,13 +165,26 @@ async function generateResponse(isPositive) {
       const subject = composeDetails.subject;
       const keyObj = await browser.storage.local.get("key");
       const key = keyObj.key;
-      
+      console.log(mail);
       if (!key) {
           alert("Proszę najpierw zapisać klucz API w ustawieniach wtyczki");
           return;
       }
 
-      const prompt = isPositive ? getPolitePrompt(mail, subject) : getNegativePrompt(mail, subject);
+      let prompt = '';
+      if(type == "POSITIVE") {
+        prompt = getPolitePrompt(mail, subject);
+      }
+      else if(type == "NEGATIVE") {
+        prompt = getNegativePrompt(mail, subject);
+      }
+      else if(type == "CUSTOM") {
+        prompt = getCustomPrompt(mail, subject, instructions);
+      }
+      else {
+        throw new Error("No type provided");
+        
+      }
       
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
           method: 'POST',
@@ -230,7 +198,6 @@ async function generateResponse(isPositive) {
 
       const data = await response.json();
       let generatedText = formatGeminiReplyForHTML(data.candidates[0].content.parts[0].text);
-      
       const user = await getCurrentSenderIdentity();
       if (user.fullName) {
           generatedText = generatedText.replace('[YourName]', user.fullName);
@@ -253,6 +220,7 @@ function generateCustomForm() {
   input.type = 'text';
   input.placeholder = 'Wprowadź konkretne instrukcje...';
   input.id = 'custom-prompt-input';
+  input.required = true;
 
   const button = document.createElement('button');
   button.id = 'custom-prompt-button';
@@ -260,18 +228,25 @@ function generateCustomForm() {
   form.appendChild(input);
   form.appendChild(button);
   
-  document.querySelector("#custom-prompt-button").addEventListener('click', removeCustomForm);
+  document.querySelector("#custom-prompt-button").addEventListener('click', async () => {
+    await generateResponse("CUSTOM", input.value);
+  });
 }
 
 function removeCustomForm() {
   replyCustomButton.disabled = false;
   const input = document.querySelector('#custom-prompt-input');
-  const button = document .querySelector('#custom-prompt-button');
+  const button = document.querySelector('#custom-prompt-button');
 
   if (input) input.remove();
   if (button) button.remove();
 
 }
-
-replyPolitelyButton.addEventListener(`click`, generateResponse);
 replyCustomButton.addEventListener(`click`, generateCustomForm);
+replyPolitelyButton.addEventListener("click", async () => {
+  await generateResponse("POSITIVE");
+});
+replyNegativelyButton.addEventListener("click", async () => {
+  await generateResponse("NEGATIVE");
+});
+
