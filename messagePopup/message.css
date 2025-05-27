@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fdfdfd;
+    margin: 0;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+    align-items: start;
+}
+
+.header {
+    font-weight: bold;
+    color: #333;
+}
+
+#classification {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#details {
+    color: #555;
+    font-size: 0.95em;
+    white-space: normal;
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+button {
+    grid-column: span 2;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
