@@ -1,4 +1,4 @@
-import { getFullText, callGeminiAPI, getStoredApiKey } from '../utils/utils.js';
+import { getFullText, callGeminiAPI, callClaudeAPI, callOpenAIAPI, getStoredApiKey, getStoredModelType } from '../utils/utils.js';
 
 function classifyWithThunderbird(messageId) {
     return messenger.messages.get(messageId)
@@ -16,9 +16,8 @@ async function classifyWithAI(message, fullMessage, messageText) {
     try {
         const key = await getStoredApiKey();
         if (!key) throw new Error("Brak klucza API.");
-
+        const modelType = await getStoredModelType();
         const receivedHeader = fullMessage.headers?.received?.[0] || "";
-
         const prompt = `
         Klasyfikuj email pod kątem spamu, phishingu lub anomalii. Zwróć odpowiedź w formacie JSON z polami(przyporządkuj true jeden raz tam gdzie najlepiej pasuje):
         - spam: true/false
@@ -40,16 +39,30 @@ async function classifyWithAI(message, fullMessage, messageText) {
         - Podawaj powody w details maksymalnie zwięźle, np. "Link", "Dane osobowe".
         - Jeśli brak problemów, podaj w details: ["Brak nieprawidłowości"].
         `;
-
-        const data = await callGeminiAPI(key, prompt);
-        const rawText = data.candidates[0].content.parts[0].text;
-        const cleaned = rawText.replace(/```json\n|\n```/g, '');
-        const classification = JSON.parse(cleaned);
-
+        let data, rawText, cleaned, classification;
+        if (modelType === "GEMINI") {
+            data = await callGeminiAPI(key, prompt);
+            rawText = data.candidates[0].content.parts[0].text;
+            cleaned = rawText.replace(/```json\n|\n```/g, '');
+            classification = JSON.parse(cleaned);
+        } else if (modelType === "CLAUDE") {
+            data = await callClaudeAPI(key, prompt);
+            // Claude: załóżmy, że odpowiedź jest w data.content[0].text
+            rawText = data.content[0]?.text || '';
+            cleaned = rawText.replace(/```json\n|\n```/g, '');
+            classification = JSON.parse(cleaned);
+        } else if (modelType === "OPENAI") {
+            data = await callOpenAIAPI(key, prompt);
+            // OpenAI: załóżmy, że odpowiedź jest w data.choices[0].message.content
+            rawText = data.choices[0]?.message?.content || '';
+            cleaned = rawText.replace(/```json\n|\n```/g, '');
+            classification = JSON.parse(cleaned);
+        } else {
+            throw new Error("Nieobsługiwany model");
+        }
         if (!classification.details?.length || (!classification.spam && !classification.phishing && !classification.anomaly)) {
             classification.details = ["Brak nieprawidłowości"];
         }
-
         console.log("classifyWithAI: Wynik", classification);
         return classification;
     } catch (error) {

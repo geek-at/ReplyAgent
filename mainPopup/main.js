@@ -8,23 +8,24 @@ async function handleSubmit(event) {
     const apiKey = document.querySelector("#api-key-value").value.trim();
 
     if (!apiKey) {
-        alert("Proszę wprowadzić klucz API.");
+        alert("Please enter API key.");
         return;
     }
 
     try {
         await storeApiKey(apiKey);
-        alert("Klucz API został zapisany.");
+        alert("API key was saved.");
         renderViewBasedOnApiKey();
     } catch (error) {
-        console.error("Błąd podczas zapisu klucza:", error);
-        alert("Wystąpił błąd przy zapisie klucza API.");
+        console.error("Error while saving API key:", error);
+        alert("Error while saving API key.");
     }
 }
 
 async function handleRemove() {
     await removeApiKey();
-    alert("Klucz API został usunięty.");
+    await browser.storage.local.remove('modelType');
+    alert("API key was removed.");
     renderViewBasedOnApiKey();
 }
 
@@ -35,20 +36,34 @@ function renderApiKeyForm() {
     const select = document.createElement("select");
     select.id = "api-key-type";
 
-    const option = document.createElement("option");
-    option.value = "GEMINI";
-    option.textContent = "Gemini";
-    select.appendChild(option);
+    const optionGemini = document.createElement("option");
+    optionGemini.value = "GEMINI";
+    optionGemini.textContent = "Gemini";
+    select.appendChild(optionGemini);
+
+    const optionClaude = document.createElement("option");
+    optionClaude.value = "CLAUDE";
+    optionClaude.textContent = "Claude";
+    select.appendChild(optionClaude);
+
+    const optionOpenAI = document.createElement("option");
+    optionOpenAI.value = "OPENAI";
+    optionOpenAI.textContent = "OpenAI";
+    select.appendChild(optionOpenAI);
+
+    select.addEventListener('change', async (event) => {
+        await browser.storage.local.set({ modelType: event.target.value });
+    });
 
     const inputKey = document.createElement("input");
     inputKey.type = "text";
     inputKey.id = "api-key-value";
-    inputKey.placeholder = "Wklej klucz API...";
+    inputKey.placeholder = "Paste your API key here...";
 
     const submitButton = document.createElement("input");
     submitButton.type = "submit";
     submitButton.id = "api-key-submit";
-    submitButton.value = "Zapisz klucz API";
+    submitButton.value = "Save API key";
 
     form.appendChild(select);
     form.appendChild(inputKey);
@@ -64,15 +79,21 @@ function removeApiKeyForm() {
     }
 }
 
-function renderApiKeyInfo() {
+async function renderApiKeyInfo() {
     const container = document.createElement('div');
     const info = document.createElement('h1');
+    const modelInfo = document.createElement('p');
     const button = document.createElement('button');
 
     container.id = "api-key-info";
-    info.innerHTML = "Klucz API jest zapisany.";
-    button.innerHTML = "Usuń klucz";
+    info.innerHTML = "API key is saved.";
+
+    const { modelType } = await browser.storage.local.get("modelType");
+    modelInfo.innerHTML = "Model provider: " + (modelType);
+
+    button.innerHTML = "Remove API key";
     container.appendChild(info);
+    container.appendChild(modelInfo);
     container.appendChild(button);
     document.body.appendChild(container);
     button.addEventListener("click", handleRemove);
@@ -97,3 +118,11 @@ async function renderViewBasedOnApiKey() {
 }
 
 document.addEventListener('DOMContentLoaded', renderViewBasedOnApiKey);
+
+async function handleModelSelection(event) {
+    event.preventDefault();
+    const select = document.querySelector("#api-key-type");
+    await browser.storage.local.set({ modelType: select.value });
+    alert("Model was saved.");
+    renderViewBasedOnApiKey();
+}

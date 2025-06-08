@@ -28,6 +28,37 @@ export async function callGeminiAPI(key, prompt) {
     const data = await response.json();
     return data;
 }
+export async function callClaudeAPI(key, prompt) {
+    const response = await fetch(`https://api.anthropic.com/v1/messages`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${key}`
+        },
+        body: JSON.stringify({
+            model: "claude-sonnet-4-20250514",
+            messages: [{ role: "user", content: prompt }]
+        })
+    });
+    const data = await response.json();
+    return data;
+}
+
+export async function callOpenAIAPI(key, prompt) {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${key}`
+        },
+        body: JSON.stringify({
+            model: "gpt-4.1-mini-2025-04-14",
+            messages: [{ role: "user", content: prompt }]
+        })
+    });
+    const data = await response.json();
+    return data;
+}
 
 export async function getStoredApiKey() {
     const { key } = await browser.storage.local.get("key");
@@ -40,4 +71,9 @@ export async function storeApiKey(key) {
 
 export async function removeApiKey() {
     await browser.storage.local.remove('key');
+}
+
+export async function getStoredModelType() {
+    const { modelType } = await browser.storage.local.get("modelType");
+    return modelType || "GEMINI";
 }

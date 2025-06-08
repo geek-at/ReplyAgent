@@ -1,4 +1,4 @@
-import { getFullText, formatReplyHTML, callGeminiAPI, getStoredApiKey } from '../utils/utils.js';
+import { getFullText, formatReplyHTML, callGeminiAPI, getStoredApiKey, callClaudeAPI, callOpenAIAPI, getStoredModelType } from '../utils/utils.js';
 
 const replyCustomButton = document.querySelector("#reply-custom-button");
 const replyPolitelyButton = document.querySelector("#reply-politely-button");
@@ -386,33 +386,46 @@ async function generateResponse(type, instructions = "") {
         const [tab] = await messenger.tabs.query({ active: true, currentWindow: true });
         const composeDetails = await messenger.compose.getComposeDetails(tab.id);
         const messageId = composeDetails.relatedMessageId;
-
         const mail = await getMailDetails(messageId);
         const subject = composeDetails.subject;
         const key = await getStoredApiKey();
-
+        const modelType = await getStoredModelType();
         if (!key) {
             alert("Proszę najpierw zapisać klucz API w ustawieniach wtyczki");
             return;
         }
-
         let prompt = '';
         if(type === "POSITIVE") prompt = getPolitePrompt(mail, subject);
         else if(type === "NEGATIVE") prompt = getNegativePrompt(mail, subject);
         else if(type === "CUSTOM") prompt = getCustomPrompt(mail, subject, instructions);
         else throw new Error("No type provided");
-
-        const data = await callGeminiAPI(key, prompt);
-
-        if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
-            alert("Błąd serwera: brak odpowiedzi");
-            throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+        let data, generatedText;
+        if (modelType === "GEMINI") {
+            data = await callGeminiAPI(key, prompt);
+            if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
+                alert("Błąd serwera: brak odpowiedzi");
+                throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+            }
+            generatedText = formatReplyHTML(data.candidates[0].content.parts[0].text);
+        } else if (modelType === "CLAUDE") {
+            data = await callClaudeAPI(key, prompt);
+            if (!data.content || !data.content[0]?.text) {
+                alert("Błąd serwera: brak odpowiedzi");
+                throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+            }
+            generatedText = formatReplyHTML(data.content[0].text);
+        } else if (modelType === "OPENAI") {
+            data = await callOpenAIAPI(key, prompt);
+            if (!data.choices || !data.choices[0]?.message?.content) {
+                alert("Błąd serwera: brak odpowiedzi");
+                throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+            }
+            generatedText = formatReplyHTML(data.choices[0].message.content);
+        } else {
+            throw new Error("Nieobsługiwany model");
         }
-
-        let generatedText = formatReplyHTML(data.candidates[0].content.parts[0].text);
         const user = await getCurrentSenderIdentity();
         if (user.fullName) generatedText = generatedText.replace('[YourName]', user.fullName);
-
         await messenger.compose.setComposeDetails(tab.id, {
             body: generatedText
         });
