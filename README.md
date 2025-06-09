@@ -1,4 +1,3 @@
-
 # ![ReplyAI]images/logo100x100.png) ReplyAI
 ## Wprowadzenie
 
