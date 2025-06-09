@@ -1,4 +1,4 @@
-# ![ReplyAI]images/logo100x100.png) ReplyAI
+# ![ReplyAI](images/logo100x100.png) ReplyAI
 ## Wprowadzenie
 
 **ReplyAI** to wtyczka dla Thunderbirda, która usprawnia proces odpowiadania na e-maile oraz zwiększa bezpieczeństwo korespondencji. Została zaprojektowana z myślą o użytkownikach, którzy chcą szybko i profesjonalnie odpowiadać na wiadomości, jednocześnie chroniąc się przed potencjalnymi zagrożeniami, takimi jak spam, phishing czy anomalie w treści e-maili. Jest szczególnie przydatna dla użytkowników akademickich, takich jak profesorowie, którzy muszą utrzymywać odpowiedni ton w komunikacji.
