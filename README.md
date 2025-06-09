@@ -1,4 +1,4 @@
-# ReplyAI (/images/logo100x1000.png)
+# ReplyAI (/images/logo100x100.png)
 
 ## Wprowadzenie
 
