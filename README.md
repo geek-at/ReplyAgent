@@ -1,103 +1,92 @@
 # ![ReplyAI](images/logo100x100.png) ReplyAI
-## Wprowadzenie
+## Introduction
 
-**ReplyAI** to wtyczka dla Thunderbirda, która usprawnia proces odpowiadania na e-maile oraz zwiększa bezpieczeństwo korespondencji. Została zaprojektowana z myślą o użytkownikach, którzy chcą szybko i profesjonalnie odpowiadać na wiadomości, jednocześnie chroniąc się przed potencjalnymi zagrożeniami, takimi jak spam, phishing czy anomalie w treści e-maili. Jest szczególnie przydatna dla użytkowników akademickich, takich jak profesorowie, którzy muszą utrzymywać odpowiedni ton w komunikacji.
+**ReplyAI** is a Thunderbird plugin that improves the process of replying to emails and increases message security. It is designed for users who want to respond to messages quickly and professionally, while also protecting themselves from potential threats such as spam, phishing, or anomalies in email content. It is especially useful for academic users, such as professors, who need to maintain a proper tone in communication.
 
-## Funkcje
+## Features
 
-- **Automatyczne generowanie odpowiedzi:**
+- **Automatic reply generation:**
 
-  - **Pozytywne odpowiedzi:** Wyrażają zgodę na prośbę, np. na konsultacje, z zachowaniem zasad etykiety akademickiej.
-  - **Negatywne odpowiedzi:** Uprzejmie odmawiają spełnienia prośby, np. przedłużenia terminu.
-  - **Niestandardowe odpowiedzi:** Umożliwiają użytkownikowi określenie własnych instrukcji dla elastyczności.
-  - Odpowiedzi są generowane z uwzględnieniem odpowiednich zwrotów grzecznościowych i zachęcają do dalszego kontaktu.
+  - **Positive replies:** Agree to a request (e.g., for a consultation), following academic etiquette.
+  - **Negative replies:** Politely decline a request, such as deadline extensions.
+  - **Custom replies:** Allow the user to enter their own instructions for flexibility.
+  - Replies are generated using appropriate polite language and encourage further communication.
 
-- **Klasyfikacja e-maili pod kątem bezpieczeństwa:**
+- **Email safety classification:**
 
-  - **Spam:** Wykrywa niechciane wiadomości, takie jak reklamy.
-  - **Phishing:** Ostrzega przed próbami wyłudzenia danych, np. poprzez podejrzane linki.
-  - **Anomalie:** Identyfikuje nietypowe elementy, takie jak przyszłe daty w nagłówkach czy powtórzenia treści.
-  - Klasyfikacja opiera się na wbudowanym filtrze Thunderbirda oraz analizie AI z API Gemini.
+  - **Spam:** Detects unwanted messages like ads.
+  - **Phishing:** Warns about data-stealing attempts, e.g., via suspicious links.
+  - **Anomalies:** Identifies unusual elements such as future dates in headers or repeated content.
+  - Classification is based on Thunderbird's built-in filter and AI analysis using a selected API provider.
 
-- **Integracja z Thunderbirdem:**
+- **Thunderbird integration:**
 
-  - Wyświetlanie szczegółów e-maila (temat, nadawca, nagłówek "Received").
-  - Oznaczanie wiadomości etykietami (np. \[SPAM\], \[PHISHING\], \[ANOMALIA\]) z odpowiednimi kolorami.
-  - Szybkie odpowiadanie dzięki przyciskowi "Reply".
+  - Displays email details (subject, sender, "Received" header).
+  - Labels messages (e.g., \[SPAM\], \[PHISHING\], \[ANOMALY\]) with appropriate colors.
+  - Quick replies via the "Reply" button.
 
-## Instalacja
+## Installation
 
-Aby zainstalować ReplyAI jako rozszerzenie tymczasowe w Thunderbirdzie, wykonaj następujące kroki:
+To install ReplyAI as a temporary extension in Thunderbird, follow these steps:
 
-1. Otwórz Thunderbirda i przejdź do `Dodatki i motywy` &gt; `Zarządzaj rozszerzeniami` &gt; `Debuguj dodatki`.
-2. W sekcji `Rozszerzenia tymczasowe` kliknij `Tymczasowo wczytaj dodatek`.
-3. Wybierz plik `manifest.json` z folderu wtyczki ReplyAI.
-4. Po załadowaniu ikona ReplyAI pojawi się w pasku narzędzi Thunderbirda.
-5. Skonfiguruj klucz API Gemini, klikając ikonę ReplyAI i postępując zgodnie z instrukcjami w panelu `mainPopup`.
+1. Open Thunderbird and go to `Add-ons and Themes` > `Manage Extensions` > `Debug Add-ons`.
+2. In the `Temporary Extensions` section, click `Load Temporary Add-on`.
+3. Select the `manifest.json` file from the ReplyAI plugin folder.
+4. After loading, the ReplyAI icon will appear in Thunderbird’s toolbar.
+5. Configure the API key by clicking the ReplyAI icon and following the instructions in the `mainPopup` panel.  
+**Note:** An API key from the selected provider (Gemini, OpenAI, or Claude) is required for AI-based features. Enter the key in the `mainPopup` panel.
 
-**Uwaga:** Klucz API Gemini jest wymagany do funkcji opartych na AI. Uzyskaj klucz z platformy Gemini API i wprowadź go w panelu `mainPopup`.
+## Usage Instructions
 
-## Instrukcje użytkowania
+ReplyAI integrates with Thunderbird through three panels (popups) that make its features easy to use:
 
-ReplyAI integruje się z Thunderbirdem poprzez trzy panele (popupy), które ułatwiają korzystanie z jego funkcji:
+### MainPopup: API key setup
 
-### MainPopup: Konfiguracja klucza API
+- Allows selecting the API provider (Gemini, OpenAI, Claude) and entering/managing the API key required for AI functions.
+- If no key is saved, it shows a form to enter one.
+- Once saved, it displays the key with an option to delete it.
+- **Steps:**
+  1. Click the ReplyAI icon in the toolbar.
+  2. Select the API provider and enter the key, then click `Save API Key`.
+  3. Check if the key was saved or delete it if you need to change it.
 
-- Służy do wprowadzania i zarządzania kluczem API, niezbędnym do funkcji AI.
-- Jeśli klucz nie jest zapisany, wyświetla formularz do jego wprowadzenia.
-- Po zapisaniu pokazuje zapisany klucz z opcją jego usunięcia.
-- **Kroki:**
-  1. Kliknij ikonę ReplyAI w pasku narzędzi.
-  2. Wprowadź klucz API Gemini i kliknij `Zapisz klucz API`.
-  3. Sprawdź, czy klucz został zapisany, lub usuń go, jeśli potrzebujesz zmiany.
+### MessagePopup: Email details and quick reply
 
-### MessagePopup: Szczegóły e-maila i szybka odpowiedź
+- Shows the subject, sender, and "Received" header of the selected email.
+- Classifies the email for spam, phishing, and anomalies, labeling it accordingly (e.g., \[SPAM\] in orange).
+- Includes a "Reply" button for quick responses.
+- **Steps:**
+  1. Select an email in the inbox.
+  2. Click the ReplyAI icon to open the `messagePopup`.
+  3. Review the email details and safety classification.
+  4. Click "Reply" to start composing a response.
 
-- Wyświetla temat, nadawcę i nagłówek "Received" wybranego e-maila.
-- Klasyfikuje e-mail pod kątem spamu, phishingu i anomalii, oznaczając go etykietami (np. \[SPAM\] w kolorze pomarańczowym).
-- Zawiera przycisk "Reply" do szybkiego rozpoczęcia odpowiedzi.
-- **Kroki:**
-  1. Wybierz e-mail w skrzynce odbiorczej.
-  2. Kliknij ikonę ReplyAI, aby otworzyć `messagePopup`.
-  3. Sprawdź szczegóły e-maila i klasyfikację bezpieczeństwa.
-  4. Kliknij "Reply", aby rozpocząć odpowiedź.
+### ComposePopup: Generating replies
 
-### ComposePopup: Generowanie odpowiedzi
+- Provides buttons for generating positive, negative, or custom replies.
+- For custom replies, a form is available to enter instructions.
+- The generated reply is inserted into the compose window.
+- **Steps:**
+  1. Open the window for composing a new message or reply.
+  2. Click the ReplyAI icon to open the `composePopup`.
+  3. Choose the reply type (positive, negative, or custom).
+  4. For a custom reply, enter instructions in the form.
+  5. Click the button to generate and insert the reply.
 
-- Oferuje przyciski do generowania odpowiedzi pozytywnych, negatywnych lub niestandardowych.
-- Dla odpowiedzi niestandardowych dostępny jest formularz do wprowadzenia własnych instrukcji.
-- Po wygenerowaniu odpowiedź jest wstawiana do okna komponowania wiadomości.
-- **Kroki:**
-  1. Otwórz okno komponowania nowej wiadomości lub odpowiedzi.
-  2. Kliknij ikonę ReplyAI, aby otworzyć `composePopup`.
-  3. Wybierz typ odpowiedzi (pozytywna, negatywna lub niestandardowa).
-  4. Dla niestandardowej odpowiedzi wprowadź instrukcje w formularzu.
-  5. Kliknij przycisk, aby wygenerować odpowiedź i wstawić ją do wiadomości.
+## Troubleshooting
 
-
-## Rozwiązywanie problemów
-
-- **Wtyczka nie ładuje się:** Upewnij się, że plik `manifest.json` jest poprawnie sformatowany i znajduje się w folderze wtyczki.
-- **Problemy z kluczem API:** Sprawdź, czy klucz API Gemini jest poprawny i ma odpowiednie uprawnienia.
-- **Brak odpowiedzi AI:** Upewnij się, że klucz API jest zapisany i połączenie z internetem działa.
+- **Plugin doesn't load:** Make sure `manifest.json` is correctly formatted and located in the plugin folder.
+- **API key issues:** Check if the key from the selected provider is valid and has the required permissions.
+- **No AI response:** Ensure the API key is saved and your internet connection is working.
 
 ## FAQ
 
-- **Jak uzyskać klucz API Gemini?**\
-  Odwiedź Gemini API i postępuj zgodnie z instrukcjami, aby uzyskać klucz.
-- **Czy wtyczka działa bez klucza API?**\
-  Funkcje oparte na AI wymagają klucza API, ale klasyfikacja Thunderbirda działa bez niego.
+- **How to get a Gemini API key?**  
+  Visit the provider’s website (Gemini, OpenAI, or Claude) and follow the instructions to obtain a key.
+- **Does the plugin work without an API key?**  
+  AI-based features require an API key, but Thunderbird's built-in classification works independently.
 
+## Additional Information
 
-## Licencja
-
-do uzulełnieniia
-
-## Dodatkowe informacje
-
-- **Wymagania systemowe:** Thunderbird w wersji 128.0 lub nowszej.
-- **Wsparcie:** Problemy można zgłaszać przez stronę Thunderbirda lub kontakt z autorem.
-- **Przyszłe plany:** Dodanie wsparcia dla dodatkowych języków, ulepszenie klasyfikacji AI i integracja z innymi platformami AI.
-
-
-
+- **System requirements:** Thunderbird version 128.0 or newer.
+- **Future plans:** Improve AI classification and integrate with other AI platforms.
