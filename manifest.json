@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "ReplyAI",
+  "name": "ReplyAgent",
   "description": "Extension generates AI responses using user's api key",
   "version": "1.0",
-  "author": "JWM",
+  "author": "ReplyAgentTeam",
   "default_locale": "en",
   "browser_specific_settings": {
     "gecko": {
-      "id": "helloworld@yoursite.com",
+      "id": "replyagentteam@gmail.com",
       "strict_min_version": "128.0"
     }
   },
@@ -22,7 +22,7 @@
   ],
   "browser_action": {
     "default_popup": "mainPopup/main.html",
-    "default_title": "ReplyAI",
+    "default_title": "ReplyAgent",
     "default_icon": "images/logo.png"
   },
   "message_display_action": {

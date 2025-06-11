@@ -89,8 +89,8 @@ async function renderApiKeyInfo() {
     info.innerHTML = browser.i18n.getMessage("api_key_is_saved");
 
     const { modelType } = await browser.storage.local.get("modelType");
-    modelInfo.innerHTML = browser.i18n.getMessage("model_provider").replace("$MODEL$", modelType);
-
+    modelInfo.innerHTML = browser.i18n.getMessage("model_provider").replace("$MODEL$", modelType || "");
+    
     button.innerHTML = browser.i18n.getMessage("remove_api_key");
     container.appendChild(info);
     container.appendChild(modelInfo);
