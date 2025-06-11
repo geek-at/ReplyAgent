@@ -349,27 +349,19 @@ function getNegativePrompt(mailContent, subject) {
   }
   
 
-async function getCurrentSenderIdentity() {
+  async function getCurrentSenderIdentity() {
     const [tab] = await messenger.tabs.query({ active: true, currentWindow: true });
-
     if (!tab || tab.type !== "messageCompose") {
         console.error("Not inside a compose window.");
         return null;
     }
-
     const composeDetails = await messenger.compose.getComposeDetails(tab.id);
-
     if (!composeDetails.identityId) {
         console.error("No identity found in compose details.");
         return null;
     }
-
     const identity = await messenger.identities.get(composeDetails.identityId);
-
-    return {
-        fullName: identity.fullName,
-        email: identity.email
-    };
+    return { fullName: identity.fullName, email: identity.email };
 }
 
 async function getMailDetails(messageId) {
@@ -391,7 +383,7 @@ async function generateResponse(type, instructions = "") {
         const key = await getStoredApiKey();
         const modelType = await getStoredModelType();
         if (!key) {
-            alert("Proszę najpierw zapisać klucz API w ustawieniach wtyczki");
+            alert(browser.i18n.getMessage("error_no_api_key"));
             return;
         }
         let prompt = '';
@@ -399,74 +391,68 @@ async function generateResponse(type, instructions = "") {
         else if(type === "NEGATIVE") prompt = getNegativePrompt(mail, subject);
         else if(type === "CUSTOM") prompt = getCustomPrompt(mail, subject, instructions);
         else throw new Error("No type provided");
+
         let data, generatedText;
         if (modelType === "GEMINI") {
             data = await callGeminiAPI(key, prompt);
             if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
-                alert("Błąd serwera: brak odpowiedzi");
-                throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+                alert(browser.i18n.getMessage("error_server_no_response"));
+                throw new Error(browser.i18n.getMessage("error_ai_no_data"));
             }
             generatedText = formatReplyHTML(data.candidates[0].content.parts[0].text);
         } else if (modelType === "CLAUDE") {
             data = await callClaudeAPI(key, prompt);
             if (!data.content || !data.content[0]?.text) {
-                alert("Błąd serwera: brak odpowiedzi");
-                throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+                alert(browser.i18n.getMessage("error_server_no_response"));
+                throw new Error(browser.i18n.getMessage("error_ai_no_data"));
             }
             generatedText = formatReplyHTML(data.content[0].text);
         } else if (modelType === "OPENAI") {
             data = await callOpenAIAPI(key, prompt);
             if (!data.choices || !data.choices[0]?.message?.content) {
-                alert("Błąd serwera: brak odpowiedzi");
-                throw new Error("Nie udało się wygenerować odpowiedzi – brak danych od modelu.");
+                alert(browser.i18n.getMessage("error_server_no_response"));
+                throw new Error(browser.i18n.getMessage("error_ai_no_data"));
             }
             generatedText = formatReplyHTML(data.choices[0].message.content);
         } else {
-            throw new Error("Nieobsługiwany model");
+            throw new Error(browser.i18n.getMessage("error_model_not_supported"));
         }
+
         const user = await getCurrentSenderIdentity();
         if (user.fullName) generatedText = generatedText.replace('[YourName]', user.fullName);
-        await messenger.compose.setComposeDetails(tab.id, {
-            body: generatedText
-        });
-        alert("Odpowiedź została wygenerowana i wklejona do treści wiadomości.");
+        await messenger.compose.setComposeDetails(tab.id, { body: generatedText });
+        alert(browser.i18n.getMessage("reply_generated"));
     } catch (error) {
         console.error("Błąd generowania odpowiedzi:", error);
-        alert("Wystąpił błąd: " + error.message);
+        alert(browser.i18n.getMessage("error_ai_generation").replace("$ERROR$", error.message));
     }
 }
 
 function toggleCustomForm() {
     const form = document.querySelector("#custom-prompt-form");
-
     const existingInput = document.querySelector('#custom-prompt-input');
     if (existingInput) {
         removeCustomForm();
         return;
     }
-
     replyCustomButton.disabled = true;
-
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Wprowadź konkretne instrukcje...';
+    input.placeholder = browser.i18n.getMessage("prompt_placeholder");
     input.id = 'custom-prompt-input';
     input.required = true;
-
     const button = document.createElement('button');
     button.id = 'custom-prompt-button';
-    button.textContent = 'Wyślij';
-
+    button.textContent = browser.i18n.getMessage("send_button");
     button.addEventListener('click', async (e) => {
         e.preventDefault();
         const instructions = input.value.trim();
         if (!instructions) {
-            alert("Proszę wprowadzić instrukcje.");
+            alert(browser.i18n.getMessage("prompt_enter_instructions"));
             return;
         }
         await generateResponse("CUSTOM", instructions);
     });
-
     form.appendChild(input);
     form.appendChild(button);
 }
@@ -475,15 +461,10 @@ function removeCustomForm() {
     replyCustomButton.disabled = false;
     const input = document.querySelector('#custom-prompt-input');
     const button = document.querySelector('#custom-prompt-button');
-
     if (input) input.remove();
     if (button) button.remove();
 }
 
 replyCustomButton.addEventListener("click", toggleCustomForm);
-replyPolitelyButton.addEventListener("click", async () => {
-    await generateResponse("POSITIVE");
-});
-replyNegativelyButton.addEventListener("click", async () => {
-    await generateResponse("NEGATIVE");
-});
+replyPolitelyButton.addEventListener("click", async () => { await generateResponse("POSITIVE"); });
+replyNegativelyButton.addEventListener("click", async () => { await generateResponse("NEGATIVE"); });

@@ -1,0 +1,40 @@
+{
+    "reply_positively": {
+      "message": "Odpowiedz pozytywnie"
+    },
+    "reply_negatively": {
+      "message": "Odpowiedz negatywnie"
+    },
+    "reply_custom": {
+      "message": "Odpowiedź własna"
+    },
+    "details_title": { "message": "Szczegóły" },
+    "subject_label": { "message": "Temat:" },
+    "from_label": { "message": "Od:" },
+    "received_header_label": { "message": "Nagłówki:" },
+    "classification_details_label": { "message": "Szczegóły klasyfikacji:" },
+    "reply_button": { "message": "Odpowiedz" },
+    "please_enter_api_key": { "message": "Proszę wprowadzić klucz API." },
+  "api_key_saved": { "message": "Klucz API został zapisany." },
+  "error_saving_api_key": { "message": "Wystąpił błąd podczas zapisywania klucza API." },
+  "api_key_removed": { "message": "Klucz API został usunięty." },
+  "model_saved": { "message": "Model został zapisany." },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "Wklej tutaj swój klucz API..." },
+  "save_api_key": { "message": "Zapisz klucz API" },
+  "api_key_is_saved": { "message": "Klucz API został zapisany." },
+  "model_provider": { "message": "Dostawca modelu: $MODEL$" },
+  "remove_api_key": { "message": "Usuń klucz API" },
+  "error_no_api_key": { "message": "Proszę najpierw zapisać klucz API w ustawieniach wtyczki" },
+  "error_server_no_response": { "message": "Błąd serwera: brak odpowiedzi" },
+  "error_ai_no_data": { "message": "Nie udało się wygenerować odpowiedzi – brak danych od modelu." },
+  "error_ai_generation": { "message": "Wystąpił błąd: $ERROR$" },
+  "reply_generated": { "message": "Odpowiedź została wygenerowana i wklejona do treści wiadomości." },
+  "error_model_not_supported": { "message": "Nieobsługiwany model" },
+  "prompt_enter_instructions": { "message": "Proszę wprowadzić instrukcje." },
+  "prompt_placeholder": { "message": "Wprowadź konkretne instrukcje..." },
+  "send_button": { "message": "Wyślij" }
+  
+}

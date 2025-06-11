@@ -4,6 +4,7 @@
   "description": "Extension generates AI responses using user's api key",
   "version": "1.0",
   "author": "JWM",
+  "default_locale": "en",
   "browser_specific_settings": {
     "gecko": {
       "id": "helloworld@yoursite.com",

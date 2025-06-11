@@ -10,14 +10,15 @@
 <body>
 <div class="flex-container">
     <div class="buttons">
-        <button id="reply-politely-button">Odpowiedz pozytywnie</button>
-        <button id="reply-negatively-button">Odpowiedz negatywnie</button>
-        <button id="reply-custom-button">Odpowiedź własna</button>
+        <button id="reply-politely-button" data-i18n="reply_positively"></button>
+        <button id="reply-negatively-button" data-i18n="reply_negatively"></button>
+        <button id="reply-custom-button" data-i18n="reply_custom"></button>
     </div>
     <form class="form" id="custom-prompt-form">
     </form>
 </div>
 <script type="module" src="compose.js"></script>
+<script src="../i18n.js"></script>
 </body>
 
 </html>
