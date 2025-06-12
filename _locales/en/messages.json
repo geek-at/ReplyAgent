@@ -1,0 +1,40 @@
+{
+    "reply_positively": {
+      "message": "Reply Positively"
+    },
+    "reply_negatively": {
+      "message": "Reply Negatively"
+    },
+    "reply_custom": {
+      "message": "Reply Custom"
+    },
+    "details_title": { "message": "Details" },
+    "subject_label": { "message": "Subject:" },
+    "from_label": { "message": "From:" },
+    "received_header_label": { "message": "Received Header:" },
+    "classification_details_label": { "message": "Classification details:" },
+    "reply_button": { "message": "Reply" },
+    "please_enter_api_key": { "message": "Please enter API key." },
+  "api_key_saved": { "message": "API key was saved." },
+  "error_saving_api_key": { "message": "Error while saving API key." },
+  "api_key_removed": { "message": "API key was removed." },
+  "model_saved": { "message": "Model was saved." },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "Paste your API key here..." },
+  "save_api_key": { "message": "Save API key" },
+  "api_key_is_saved": { "message": "API key is saved." },
+  "model_provider": { "message": "Model provider: $MODEL$" },
+  "remove_api_key": { "message": "Remove API key" },
+  "error_no_api_key": { "message": "Please first save your API key in plugin settings" },
+  "error_server_no_response": { "message": "Server error: no response" },
+  "error_ai_no_data": { "message": "Failed to generate response – no data from model." },
+  "error_ai_generation": { "message": "An error occurred: $ERROR$" },
+  "reply_generated": { "message": "The reply has been generated and inserted into the message body." },
+  "error_model_not_supported": { "message": "Unsupported model" },
+  "prompt_enter_instructions": { "message": "Please enter instructions." },
+  "prompt_placeholder": { "message": "Enter specific instructions..." },
+  "send_button": { "message": "Send" }
+
+}
