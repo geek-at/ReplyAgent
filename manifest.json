@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "ReplyAgent",
   "description": "Extension generates AI responses using user's api key",
-  "version": "1.0",
+  "version": "1.1",
   "author": "ReplyAgentTeam",
   "default_locale": "en",
   "browser_specific_settings": {
@@ -36,8 +36,8 @@
     "default_icon": "images/logo.png"
   },
   "icons": {
-    "64": "images/logo.png",
-    "32": "images/logo.png",
-    "16": "images/logo.png"
+    "64": "images/logo_64.png",
+    "32": "images/logo_32.png",
+    "16": "images/logo_16.png"
   }
 }
