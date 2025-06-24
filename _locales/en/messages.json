@@ -49,6 +49,6 @@
   "error_model_not_supported": { "message": "Unsupported model" },
   "prompt_enter_instructions": { "message": "Please enter instructions." },
   "prompt_placeholder": { "message": "Enter specific instructions..." },
-  "send_button": { "message": "Send" }
-
+  "send_button": { "message": "Send" },
+  "send_warning": { "message": "Please note: the full content of your message will be sent to the selected LLM provider for generating a response." }
 }

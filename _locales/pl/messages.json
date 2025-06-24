@@ -49,6 +49,6 @@
   "error_model_not_supported": { "message": "Nieobsługiwany model" },
   "prompt_enter_instructions": { "message": "Proszę wprowadzić instrukcje." },
   "prompt_placeholder": { "message": "Wprowadź konkretne instrukcje..." },
-  "send_button": { "message": "Wyślij" }
-  
+  "send_button": { "message": "Wyślij" },
+  "send_warning": { "message": "Uwaga: pełna treść Twojej wiadomości zostanie przesłana do wybranego dostawcy LLM w celu wygenerowania odpowiedzi." }
 }
