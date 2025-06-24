@@ -1,4 +1,4 @@
-# ![ReplyAgent](images/logo100x100.png) ReplyAgent
+# ![ReplyAgent](images/logo_64.png) ReplyAgent
 ## Introduction
 
 **ReplyAgent** is a Thunderbird plugin that improves the process of replying to emails and increases message security. It is designed for users who want to respond to messages quickly and professionally, while also protecting themselves from potential threats such as spam, phishing, or anomalies in email content. It is especially useful for academic users, such as professors, who need to maintain a proper tone in communication.
