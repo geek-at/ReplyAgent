@@ -25,16 +25,30 @@
   "paste_api_key_here": { "message": "Wklej tutaj swój klucz API..." },
   "save_api_key": { "message": "Zapisz klucz API" },
   "api_key_is_saved": { "message": "Klucz API został zapisany." },
-  "model_provider": { "message": "Dostawca modelu: $MODEL$" },
+  "model_provider": {
+    "message": "Dostawca modelu: $MODEL$",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
   "remove_api_key": { "message": "Usuń klucz API" },
   "error_no_api_key": { "message": "Proszę najpierw zapisać klucz API w ustawieniach wtyczki" },
   "error_server_no_response": { "message": "Błąd serwera: brak odpowiedzi" },
   "error_ai_no_data": { "message": "Nie udało się wygenerować odpowiedzi – brak danych od modelu." },
-  "error_ai_generation": { "message": "Wystąpił błąd: $ERROR$" },
+  "error_ai_generation": {
+    "message": "Wystąpił błąd: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
   "reply_generated": { "message": "Odpowiedź została wygenerowana i wklejona do treści wiadomości." },
   "error_model_not_supported": { "message": "Nieobsługiwany model" },
   "prompt_enter_instructions": { "message": "Proszę wprowadzić instrukcje." },
   "prompt_placeholder": { "message": "Wprowadź konkretne instrukcje..." },
-  "send_button": { "message": "Wyślij" }
-  
+  "send_button": { "message": "Wyślij" },
+  "send_warning": { "message": "Uwaga: pełna treść Twojej wiadomości zostanie przesłana do wybranego dostawcy LLM w celu wygenerowania odpowiedzi." }
 }

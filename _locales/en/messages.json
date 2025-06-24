@@ -25,16 +25,30 @@
   "paste_api_key_here": { "message": "Paste your API key here..." },
   "save_api_key": { "message": "Save API key" },
   "api_key_is_saved": { "message": "API key is saved." },
-  "model_provider": { "message": "Model provider: $MODEL$" },
+  "model_provider": {
+    "message": "Model provider: $MODEL$",
+    "placeholders": {
+      "model": {
+        "content": "$1"
+      }
+    }
+  },
   "remove_api_key": { "message": "Remove API key" },
   "error_no_api_key": { "message": "Please first save your API key in plugin settings" },
   "error_server_no_response": { "message": "Server error: no response" },
   "error_ai_no_data": { "message": "Failed to generate response – no data from model." },
-  "error_ai_generation": { "message": "An error occurred: $ERROR$" },
+  "error_ai_generation": {
+    "message": "An error occurred: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
   "reply_generated": { "message": "The reply has been generated and inserted into the message body." },
   "error_model_not_supported": { "message": "Unsupported model" },
   "prompt_enter_instructions": { "message": "Please enter instructions." },
   "prompt_placeholder": { "message": "Enter specific instructions..." },
-  "send_button": { "message": "Send" }
-
+  "send_button": { "message": "Send" },
+  "send_warning": { "message": "Please note: the full content of your message will be sent to the selected LLM provider for generating a response." }
 }
