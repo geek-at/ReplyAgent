@@ -14,6 +14,8 @@
     "received_header_label": { "message": "Received Header:" },
     "classification_details_label": { "message": "Classification details:" },
     "reply_button": { "message": "Reply" },
+    "summary_button": { "message": "Summary" },
+    "translate_button": { "message": "Translate" },
     "please_enter_api_key": { "message": "Please enter API key." },
   "api_key_saved": { "message": "API key was saved." },
   "error_saving_api_key": { "message": "Error while saving API key." },
@@ -50,5 +52,6 @@
   "prompt_enter_instructions": { "message": "Please enter instructions." },
   "prompt_placeholder": { "message": "Enter specific instructions..." },
   "send_button": { "message": "Send" },
-  "send_warning": { "message": "Please note: the full content of your message will be sent to the selected LLM provider for generating a response." }
+  "send_warning": { "message": "Please note: the full content of your message will be sent to the selected LLM provider for generating a response." },
+  "compose_review_notice": { "message": "Always review the generated email content before sending." }
 }

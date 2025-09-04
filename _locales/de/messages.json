@@ -1,0 +1,52 @@
+{
+  "reply_positively": { "message": "Positiv antworten" },
+  "reply_negatively": { "message": "Negativ antworten" },
+  "reply_custom": { "message": "Eigene Antwort" },
+
+  "details_title": { "message": "Details" },
+  "subject_label": { "message": "Betreff:" },
+  "from_label": { "message": "Von:" },
+  "received_header_label": { "message": "Received-Header:" },
+  "classification_details_label": { "message": "Klassifizierungsdetails:" },
+
+  "reply_button": { "message": "Antworten" },
+  "summary_button": { "message": "Zusammenfassung" },
+  "translate_button": { "message": "Übersetzen" },
+
+  "please_enter_api_key": { "message": "Bitte API-Schlüssel eingeben." },
+  "api_key_saved": { "message": "API-Schlüssel wurde gespeichert." },
+  "error_saving_api_key": { "message": "Fehler beim Speichern des API-Schlüssels." },
+  "api_key_removed": { "message": "API-Schlüssel wurde entfernt." },
+  "model_saved": { "message": "Modell wurde gespeichert." },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "Fügen Sie hier Ihren API-Schlüssel ein..." },
+  "save_api_key": { "message": "API-Schlüssel speichern" },
+  "api_key_is_saved": { "message": "API-Schlüssel ist gespeichert." },
+  "model_provider": {
+    "message": "Modellanbieter: $MODEL$",
+    "placeholders": {
+      "model": { "content": "$1" }
+    }
+  },
+  "remove_api_key": { "message": "API-Schlüssel entfernen" },
+  "error_no_api_key": { "message": "Bitte speichern Sie zuerst Ihren API-Schlüssel in den Plugin-Einstellungen" },
+  "error_server_no_response": { "message": "Serverfehler: keine Antwort" },
+  "error_ai_no_data": { "message": "Antwort konnte nicht generiert werden – keine Daten vom Modell." },
+  "error_ai_generation": {
+    "message": "Es ist ein Fehler aufgetreten: $ERROR$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "reply_generated": { "message": "Die Antwort wurde generiert und in den Nachrichtentext eingefügt." },
+  "error_model_not_supported": { "message": "Nicht unterstütztes Modell" },
+  "prompt_enter_instructions": { "message": "Bitte Anweisungen eingeben." },
+  "prompt_placeholder": { "message": "Geben Sie spezifische Anweisungen ein..." },
+  "send_button": { "message": "Senden" },
+  "send_warning": { "message": "Hinweis: Der vollständige Inhalt Ihrer Nachricht wird an den ausgewählten LLM-Anbieter gesendet, um eine Antwort zu generieren." },
+  "compose_review_notice": { "message": "Bitte prüfen Sie den generierten E‑Mail‑Text immer vor dem Senden." }
+}
+
+

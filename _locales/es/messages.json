@@ -1,0 +1,52 @@
+{
+  "reply_positively": { "message": "Responder positivamente" },
+  "reply_negatively": { "message": "Responder negativamente" },
+  "reply_custom": { "message": "Respuesta personalizada" },
+
+  "details_title": { "message": "Detalles" },
+  "subject_label": { "message": "Asunto:" },
+  "from_label": { "message": "De:" },
+  "received_header_label": { "message": "Encabezado Received:" },
+  "classification_details_label": { "message": "Detalles de clasificación:" },
+
+  "reply_button": { "message": "Responder" },
+  "summary_button": { "message": "Resumen" },
+  "translate_button": { "message": "Traducir" },
+
+  "please_enter_api_key": { "message": "Por favor, introduzca la clave API." },
+  "api_key_saved": { "message": "La clave API se ha guardado." },
+  "error_saving_api_key": { "message": "Error al guardar la clave API." },
+  "api_key_removed": { "message": "La clave API se ha eliminado." },
+  "model_saved": { "message": "El modelo se ha guardado." },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "Pegue aquí su clave API..." },
+  "save_api_key": { "message": "Guardar clave API" },
+  "api_key_is_saved": { "message": "La clave API está guardada." },
+  "model_provider": {
+    "message": "Proveedor del modelo: $MODEL$",
+    "placeholders": {
+      "model": { "content": "$1" }
+    }
+  },
+  "remove_api_key": { "message": "Eliminar clave API" },
+  "error_no_api_key": { "message": "Primero guarde su clave API en la configuración del complemento" },
+  "error_server_no_response": { "message": "Error del servidor: sin respuesta" },
+  "error_ai_no_data": { "message": "No se pudo generar la respuesta: no hay datos del modelo." },
+  "error_ai_generation": {
+    "message": "Ocurrió un error: $ERROR$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "reply_generated": { "message": "La respuesta se ha generado y se ha insertado en el cuerpo del mensaje." },
+  "error_model_not_supported": { "message": "Modelo no soportado" },
+  "prompt_enter_instructions": { "message": "Introduzca las instrucciones." },
+  "prompt_placeholder": { "message": "Introduzca instrucciones específicas..." },
+  "send_button": { "message": "Enviar" },
+  "send_warning": { "message": "Aviso: el contenido completo de su mensaje será enviado al proveedor LLM seleccionado para generar una respuesta." },
+  "compose_review_notice": { "message": "Revise siempre el contenido del correo generado antes de enviarlo." }
+}
+
+

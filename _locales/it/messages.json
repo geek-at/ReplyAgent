@@ -1,0 +1,52 @@
+{
+  "reply_positively": { "message": "Rispondi positivamente" },
+  "reply_negatively": { "message": "Rispondi negativamente" },
+  "reply_custom": { "message": "Risposta personalizzata" },
+
+  "details_title": { "message": "Dettagli" },
+  "subject_label": { "message": "Oggetto:" },
+  "from_label": { "message": "Da:" },
+  "received_header_label": { "message": "Header Received:" },
+  "classification_details_label": { "message": "Dettagli classificazione:" },
+
+  "reply_button": { "message": "Rispondi" },
+  "summary_button": { "message": "Riepilogo" },
+  "translate_button": { "message": "Traduci" },
+
+  "please_enter_api_key": { "message": "Inserisci la chiave API." },
+  "api_key_saved": { "message": "La chiave API è stata salvata." },
+  "error_saving_api_key": { "message": "Errore durante il salvataggio della chiave API." },
+  "api_key_removed": { "message": "La chiave API è stata rimossa." },
+  "model_saved": { "message": "Il modello è stato salvato." },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "Incolla qui la tua chiave API..." },
+  "save_api_key": { "message": "Salva chiave API" },
+  "api_key_is_saved": { "message": "La chiave API è salvata." },
+  "model_provider": {
+    "message": "Provider del modello: $MODEL$",
+    "placeholders": {
+      "model": { "content": "$1" }
+    }
+  },
+  "remove_api_key": { "message": "Rimuovi chiave API" },
+  "error_no_api_key": { "message": "Per prima cosa salva la tua chiave API nelle impostazioni del plugin" },
+  "error_server_no_response": { "message": "Errore del server: nessuna risposta" },
+  "error_ai_no_data": { "message": "Impossibile generare la risposta – nessun dato dal modello." },
+  "error_ai_generation": {
+    "message": "Si è verificato un errore: $ERROR$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "reply_generated": { "message": "La risposta è stata generata e inserita nel corpo del messaggio." },
+  "error_model_not_supported": { "message": "Modello non supportato" },
+  "prompt_enter_instructions": { "message": "Inserisci le istruzioni." },
+  "prompt_placeholder": { "message": "Inserisci istruzioni specifiche..." },
+  "send_button": { "message": "Invia" },
+  "send_warning": { "message": "Nota: il contenuto completo del messaggio verrà inviato al provider LLM selezionato per generare una risposta." },
+  "compose_review_notice": { "message": "Verifica sempre il contenuto dell'e‑mail generata prima dell'invio." }
+}
+
+

@@ -1,0 +1,52 @@
+{
+  "reply_positively": { "message": "Répondre positivement" },
+  "reply_negatively": { "message": "Répondre négativement" },
+  "reply_custom": { "message": "Réponse personnalisée" },
+
+  "details_title": { "message": "Détails" },
+  "subject_label": { "message": "Objet :" },
+  "from_label": { "message": "De :" },
+  "received_header_label": { "message": "En-tête Received :" },
+  "classification_details_label": { "message": "Détails de la classification :" },
+
+  "reply_button": { "message": "Répondre" },
+  "summary_button": { "message": "Résumé" },
+  "translate_button": { "message": "Traduire" },
+
+  "please_enter_api_key": { "message": "Veuillez entrer la clé API." },
+  "api_key_saved": { "message": "La clé API a été enregistrée." },
+  "error_saving_api_key": { "message": "Erreur lors de l'enregistrement de la clé API." },
+  "api_key_removed": { "message": "La clé API a été supprimée." },
+  "model_saved": { "message": "Le modèle a été enregistré." },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "Collez votre clé API ici..." },
+  "save_api_key": { "message": "Enregistrer la clé API" },
+  "api_key_is_saved": { "message": "La clé API est enregistrée." },
+  "model_provider": {
+    "message": "Fournisseur du modèle : $MODEL$",
+    "placeholders": {
+      "model": { "content": "$1" }
+    }
+  },
+  "remove_api_key": { "message": "Supprimer la clé API" },
+  "error_no_api_key": { "message": "Veuillez d'abord enregistrer votre clé API dans les paramètres de l'extension" },
+  "error_server_no_response": { "message": "Erreur du serveur : aucune réponse" },
+  "error_ai_no_data": { "message": "Échec de la génération de la réponse – aucune donnée du modèle." },
+  "error_ai_generation": {
+    "message": "Une erreur s'est produite : $ERROR$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "reply_generated": { "message": "La réponse a été générée et insérée dans le corps du message." },
+  "error_model_not_supported": { "message": "Modèle non pris en charge" },
+  "prompt_enter_instructions": { "message": "Veuillez entrer des instructions." },
+  "prompt_placeholder": { "message": "Entrez des instructions spécifiques..." },
+  "send_button": { "message": "Envoyer" },
+  "send_warning": { "message": "Remarque : le contenu complet de votre message sera envoyé au fournisseur LLM sélectionné pour générer une réponse." },
+  "compose_review_notice": { "message": "Vérifiez toujours le contenu de l'e‑mail généré avant l'envoi." }
+}
+
+

@@ -3,6 +3,26 @@ import { getFullText, formatReplyHTML, callGeminiAPI, getStoredApiKey, callClaud
 const replyCustomButton = document.querySelector("#reply-custom-button");
 const replyPolitelyButton = document.querySelector("#reply-politely-button");
 const replyNegativelyButton = document.querySelector("#reply-negatively-button");
+const modelIndicator = document.querySelector('#model-indicator');
+
+function humanReadableModelName(modelType) {
+    if (modelType === 'OPENAI') return 'GPT-5 Nano';
+    if (modelType === 'CLAUDE') return 'Claude Sonnet 4';
+    return 'Gemini 2.5 Flash';
+}
+
+async function renderModelIndicator() {
+    try {
+        const modelType = await getStoredModelType();
+        const name = humanReadableModelName(modelType);
+        if (modelIndicator) {
+            const text = browser.i18n.getMessage('model_provider', name);
+            modelIndicator.textContent = text || `Model: ${name}`;
+        }
+    } catch (e) {
+        console.error('renderModelIndicator error', e);
+    }
+}
 
 function getPolitePrompt(mailContent, subject) {
     return `
@@ -468,3 +488,6 @@ function removeCustomForm() {
 replyCustomButton.addEventListener("click", toggleCustomForm);
 replyPolitelyButton.addEventListener("click", async () => { await generateResponse("POSITIVE"); });
 replyNegativelyButton.addEventListener("click", async () => { await generateResponse("NEGATIVE"); });
+
+// Render current model only in the compose window where a reply is chosen
+renderModelIndicator();

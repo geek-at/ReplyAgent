@@ -14,6 +14,8 @@
     "received_header_label": { "message": "Nagłówki:" },
     "classification_details_label": { "message": "Szczegóły klasyfikacji:" },
     "reply_button": { "message": "Odpowiedz" },
+    "summary_button": { "message": "Podsumuj" },
+    "translate_button": { "message": "Tłumacz" },
     "please_enter_api_key": { "message": "Proszę wprowadzić klucz API." },
   "api_key_saved": { "message": "Klucz API został zapisany." },
   "error_saving_api_key": { "message": "Wystąpił błąd podczas zapisywania klucza API." },
@@ -50,5 +52,6 @@
   "prompt_enter_instructions": { "message": "Proszę wprowadzić instrukcje." },
   "prompt_placeholder": { "message": "Wprowadź konkretne instrukcje..." },
   "send_button": { "message": "Wyślij" },
-  "send_warning": { "message": "Uwaga: pełna treść Twojej wiadomości zostanie przesłana do wybranego dostawcy LLM w celu wygenerowania odpowiedzi." }
+  "send_warning": { "message": "Uwaga: pełna treść Twojej wiadomości zostanie przesłana do wybranego dostawcy LLM w celu wygenerowania odpowiedzi." },
+  "compose_review_notice": { "message": "Zawsze sprawdź treść wygenerowanej wiadomości przed wysłaniem." }
 }

@@ -1,0 +1,52 @@
+{
+  "reply_positively": { "message": "肯定的に返信" },
+  "reply_negatively": { "message": "否定的に返信" },
+  "reply_custom": { "message": "カスタム返信" },
+
+  "details_title": { "message": "詳細" },
+  "subject_label": { "message": "件名:" },
+  "from_label": { "message": "送信者:" },
+  "received_header_label": { "message": "Received ヘッダー:" },
+  "classification_details_label": { "message": "分類の詳細:" },
+
+  "reply_button": { "message": "返信" },
+  "summary_button": { "message": "要約" },
+  "translate_button": { "message": "翻訳" },
+
+  "please_enter_api_key": { "message": "API キーを入力してください。" },
+  "api_key_saved": { "message": "API キーを保存しました。" },
+  "error_saving_api_key": { "message": "API キーの保存中にエラーが発生しました。" },
+  "api_key_removed": { "message": "API キーを削除しました。" },
+  "model_saved": { "message": "モデルを保存しました。" },
+  "gemini": { "message": "Gemini" },
+  "claude": { "message": "Claude" },
+  "openai": { "message": "OpenAI" },
+  "paste_api_key_here": { "message": "ここに API キーを貼り付けてください..." },
+  "save_api_key": { "message": "API キーを保存" },
+  "api_key_is_saved": { "message": "API キーは保存されています。" },
+  "model_provider": {
+    "message": "モデルプロバイダー: $MODEL$",
+    "placeholders": {
+      "model": { "content": "$1" }
+    }
+  },
+  "remove_api_key": { "message": "API キーを削除" },
+  "error_no_api_key": { "message": "まずプラグイン設定で API キーを保存してください" },
+  "error_server_no_response": { "message": "サーバー エラー: 応答がありません" },
+  "error_ai_no_data": { "message": "返信の生成に失敗しました – モデルからのデータがありません。" },
+  "error_ai_generation": {
+    "message": "エラーが発生しました: $ERROR$",
+    "placeholders": {
+      "error": { "content": "$1" }
+    }
+  },
+  "reply_generated": { "message": "返信が生成され、メッセージ本文に挿入されました。" },
+  "error_model_not_supported": { "message": "未対応のモデル" },
+  "prompt_enter_instructions": { "message": "指示を入力してください。" },
+  "prompt_placeholder": { "message": "具体的な指示を入力..." },
+  "send_button": { "message": "送信" },
+  "send_warning": { "message": "注意: 返信生成のため、メッセージの全文が選択した LLM プロバイダーに送信されます。" },
+  "compose_review_notice": { "message": "送信前に必ず生成されたメール内容を確認してください。" }
+}
+
+
