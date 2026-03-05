@@ -45,14 +45,16 @@ export async function callClaudeAPI(key, prompt) {
 }
 
 export async function callOpenAIAPI(key, prompt) {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const endpoint = await getStoredOpenAIEndpoint();
+    const model = await getStoredOpenAIModel();
+    const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${key}`
         },
         body: JSON.stringify({
-            model: "gpt-5-mini-2025-08-07",
+            model,
             messages: [{ role: "user", content: prompt }]
         })
     });
@@ -76,4 +78,25 @@ export async function removeApiKey() {
 export async function getStoredModelType() {
     const { modelType } = await browser.storage.local.get("modelType");
     return modelType || "GEMINI";
+}
+
+const DEFAULT_OPENAI_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
+const DEFAULT_OPENAI_MODEL = 'gpt-5-mini-2025-08-07';
+
+export async function getStoredOpenAIEndpoint() {
+    const { openaiEndpoint } = await browser.storage.local.get("openaiEndpoint");
+    return openaiEndpoint || DEFAULT_OPENAI_ENDPOINT;
+}
+
+export async function storeOpenAIEndpoint(endpoint) {
+    await browser.storage.local.set({ openaiEndpoint: endpoint });
+}
+
+export async function getStoredOpenAIModel() {
+    const { openaiModel } = await browser.storage.local.get("openaiModel");
+    return openaiModel || DEFAULT_OPENAI_MODEL;
+}
+
+export async function storeOpenAIModel(model) {
+    await browser.storage.local.set({ openaiModel: model });
 }

@@ -1,12 +1,15 @@
-import { getFullText, formatReplyHTML, callGeminiAPI, getStoredApiKey, callClaudeAPI, callOpenAIAPI, getStoredModelType } from '../utils/utils.js';
+import { getFullText, formatReplyHTML, callGeminiAPI, getStoredApiKey, callClaudeAPI, callOpenAIAPI, getStoredModelType, getStoredOpenAIModel } from '../utils/utils.js';
 
 const replyCustomButton = document.querySelector("#reply-custom-button");
 const replyPolitelyButton = document.querySelector("#reply-politely-button");
 const replyNegativelyButton = document.querySelector("#reply-negatively-button");
 const modelIndicator = document.querySelector('#model-indicator');
 
-function humanReadableModelName(modelType) {
-    if (modelType === 'OPENAI') return 'GPT-5 Nano';
+async function humanReadableModelName(modelType) {
+    if (modelType === 'OPENAI') {
+        const model = await getStoredOpenAIModel();
+        return model;
+    }
     if (modelType === 'CLAUDE') return 'Claude Sonnet 4';
     return 'Gemini 2.5 Flash';
 }
@@ -14,7 +17,7 @@ function humanReadableModelName(modelType) {
 async function renderModelIndicator() {
     try {
         const modelType = await getStoredModelType();
-        const name = humanReadableModelName(modelType);
+        const name = await humanReadableModelName(modelType);
         if (modelIndicator) {
             const text = browser.i18n.getMessage('model_provider', name);
             modelIndicator.textContent = text || `Model: ${name}`;

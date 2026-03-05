@@ -46,7 +46,9 @@
   "prompt_placeholder": { "message": "具体的な指示を入力..." },
   "send_button": { "message": "送信" },
   "send_warning": { "message": "注意: 返信生成のため、メッセージの全文が選択した LLM プロバイダーに送信されます。" },
-  "compose_review_notice": { "message": "送信前に必ず生成されたメール内容を確認してください。" }
+  "compose_review_notice": { "message": "送信前に必ず生成されたメール内容を確認してください。" },
+  "openai_endpoint_placeholder": { "message": "APIエンドポイントURL（OpenAIの場合はデフォルトのまま）" },
+  "openai_model_placeholder": { "message": "モデル名（例: gpt-5-mini-2025-08-07）" }
 }
 
 

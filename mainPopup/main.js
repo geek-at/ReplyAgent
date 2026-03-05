@@ -1,4 +1,4 @@
-import { getStoredApiKey, storeApiKey, removeApiKey } from '../utils/utils.js';
+import { getStoredApiKey, storeApiKey, removeApiKey, getStoredOpenAIEndpoint, storeOpenAIEndpoint, getStoredOpenAIModel, storeOpenAIModel } from '../utils/utils.js';
 
 const submitButtonAPIKey = document.querySelector("#api-key-submit");
 const form = document.querySelector("#api-key-form");
@@ -14,6 +14,12 @@ async function handleSubmit(event) {
 
     try {
         await storeApiKey(apiKey);
+
+        const endpointInput = document.querySelector("#openai-endpoint");
+        const modelInput = document.querySelector("#openai-model");
+        if (endpointInput) await storeOpenAIEndpoint(endpointInput.value.trim());
+        if (modelInput) await storeOpenAIModel(modelInput.value.trim());
+
         alert(browser.i18n.getMessage("api_key_saved"));
         renderViewBasedOnApiKey();
     } catch (error) {
@@ -24,7 +30,7 @@ async function handleSubmit(event) {
 
 async function handleRemove() {
     await removeApiKey();
-    await browser.storage.local.remove('modelType');
+    await browser.storage.local.remove(['modelType', 'openaiEndpoint', 'openaiModel']);
     alert(browser.i18n.getMessage("api_key_removed"));
     renderViewBasedOnApiKey();
 }
@@ -51,9 +57,43 @@ function renderApiKeyForm() {
     optionOpenAI.textContent = browser.i18n.getMessage("openai");
     select.appendChild(optionOpenAI);
 
+    // OpenAI-specific fields container
+    const openaiFields = document.createElement("div");
+    openaiFields.id = "openai-fields";
+    openaiFields.style.display = "none";
+
+    const endpointInput = document.createElement("input");
+    endpointInput.type = "text";
+    endpointInput.id = "openai-endpoint";
+    endpointInput.placeholder = browser.i18n.getMessage("openai_endpoint_placeholder");
+
+    const modelInput = document.createElement("input");
+    modelInput.type = "text";
+    modelInput.id = "openai-model";
+    modelInput.placeholder = browser.i18n.getMessage("openai_model_placeholder");
+
+    openaiFields.appendChild(endpointInput);
+    openaiFields.appendChild(modelInput);
+
+    function toggleOpenAIFields(value) {
+        openaiFields.style.display = value === "OPENAI" ? "block" : "none";
+    }
+
     select.addEventListener('change', async (event) => {
         await browser.storage.local.set({ modelType: event.target.value });
+        toggleOpenAIFields(event.target.value);
     });
+
+    // Pre-fill stored values
+    (async () => {
+        const { modelType } = await browser.storage.local.get("modelType");
+        if (modelType) select.value = modelType;
+        toggleOpenAIFields(select.value);
+        const endpoint = await getStoredOpenAIEndpoint();
+        const model = await getStoredOpenAIModel();
+        endpointInput.value = endpoint;
+        modelInput.value = model;
+    })();
 
     const inputKey = document.createElement("input");
     inputKey.type = "text";
@@ -66,6 +106,7 @@ function renderApiKeyForm() {
     submitButton.value = browser.i18n.getMessage("save_api_key");
 
     form.appendChild(select);
+    form.appendChild(openaiFields);
     form.appendChild(inputKey);
     form.appendChild(submitButton);
     document.body.appendChild(form);

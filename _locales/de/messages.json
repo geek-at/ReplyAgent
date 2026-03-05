@@ -46,7 +46,9 @@
   "prompt_placeholder": { "message": "Geben Sie spezifische Anweisungen ein..." },
   "send_button": { "message": "Senden" },
   "send_warning": { "message": "Hinweis: Der vollständige Inhalt Ihrer Nachricht wird an den ausgewählten LLM-Anbieter gesendet, um eine Antwort zu generieren." },
-  "compose_review_notice": { "message": "Bitte prüfen Sie den generierten E‑Mail‑Text immer vor dem Senden." }
+  "compose_review_notice": { "message": "Bitte prüfen Sie den generierten E‑Mail‑Text immer vor dem Senden." },
+  "openai_endpoint_placeholder": { "message": "API-Endpunkt-URL (Standard für OpenAI lassen)" },
+  "openai_model_placeholder": { "message": "Modellname (z. B. gpt-5-mini-2025-08-07)" }
 }
 
 

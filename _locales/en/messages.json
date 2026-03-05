@@ -53,5 +53,7 @@
   "prompt_placeholder": { "message": "Enter specific instructions..." },
   "send_button": { "message": "Send" },
   "send_warning": { "message": "Please note: the full content of your message will be sent to the selected LLM provider for generating a response." },
-  "compose_review_notice": { "message": "Always review the generated email content before sending." }
+  "compose_review_notice": { "message": "Always review the generated email content before sending." },
+  "openai_endpoint_placeholder": { "message": "API endpoint URL (leave default for OpenAI)" },
+  "openai_model_placeholder": { "message": "Model name (e.g. gpt-5-mini-2025-08-07)" }
 }

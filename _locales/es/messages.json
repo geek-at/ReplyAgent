@@ -46,7 +46,9 @@
   "prompt_placeholder": { "message": "Introduzca instrucciones específicas..." },
   "send_button": { "message": "Enviar" },
   "send_warning": { "message": "Aviso: el contenido completo de su mensaje será enviado al proveedor LLM seleccionado para generar una respuesta." },
-  "compose_review_notice": { "message": "Revise siempre el contenido del correo generado antes de enviarlo." }
+  "compose_review_notice": { "message": "Revise siempre el contenido del correo generado antes de enviarlo." },
+  "openai_endpoint_placeholder": { "message": "URL del endpoint API (dejar predeterminado para OpenAI)" },
+  "openai_model_placeholder": { "message": "Nombre del modelo (p. ej. gpt-5-mini-2025-08-07)" }
 }
 
 
